@@ -11,7 +11,7 @@ export default function Navbar() {
       <nav className="navbar container" aria-label="Main navigation">
         <Link to="/" className="brand" onClick={closeMenu}>
           <img
-            src="/images/gordons-gutters-logo.png"
+            src="/public/images/gordons-gutters-logo.png"
             alt="Gordon's Gutters logo"
             className="brand-logo"
           />
