@@ -10,7 +10,12 @@ export default function Navbar() {
     <header className="site-header">
       <nav className="navbar container" aria-label="Main navigation">
         <Link to="/" className="brand" onClick={closeMenu}>
-          Gordon's Gutters
+          <img
+            src="/images/gordons-gutters-logo.png"
+            alt="Gordon's Gutters logo"
+            className="brand-logo"
+          />
+          <span>Gordon's Gutters</span>
         </Link>
 
         <button
