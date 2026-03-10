@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const logoSrc = `${import.meta.env.BASE_URL}images/gordons-gutters-logo.png`;
 
   const closeMenu = () => setIsOpen(false);
 
@@ -11,7 +12,7 @@ export default function Navbar() {
       <nav className="navbar container" aria-label="Main navigation">
         <Link to="/" className="brand" onClick={closeMenu}>
           <img
-            src="/public/images/gordons-gutters-logo.png"
+            src={logoSrc}
             alt="Gordon's Gutters logo"
             className="brand-logo"
           />
