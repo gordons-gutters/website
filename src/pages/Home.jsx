@@ -24,17 +24,17 @@ const services = [
 
 const previewImages = [
   {
-    src: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1200&q=80',
+    src: '/website/images/gutters/clean.jpg',
     alt: 'Clean residential gutters after service',
     caption: 'After: debris removed and channels cleared',
   },
   {
-    src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    src: '/website/images/gutters/straight.jpg',
     alt: 'Crew servicing roof gutters',
     caption: 'Professional service with safety-first process',
   },
   {
-    src: 'https://images.unsplash.com/photo-1601762603339-fd61e28b698a?auto=format&fit=crop&w=1200&q=80',
+    src: '/website/images/gutters/before-and-after.jpg',
     alt: 'Home exterior with maintained gutter lines',
     caption: 'Before and after transformations',
   },
