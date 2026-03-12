@@ -8,10 +8,10 @@ export default function Footer() {
         </div>
         <div>
           <p>
-            <strong>Phone:</strong> (555) 123-8847
+            <strong>Phone:</strong> (208) 240-7852
           </p>
           <p>
-            <strong>Service Area:</strong> Greater Metro Area and surrounding neighborhoods
+            <strong>Service Area:</strong> South Eastern Idaho
           </p>
         </div>
       </div>
