@@ -13,6 +13,8 @@ export default function ContactForm() {
   const [formData, setFormData] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validate = () => {
     const nextErrors = {};
@@ -47,20 +49,51 @@ export default function ContactForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const nextErrors = validate();
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length === 0) {
-      setSubmitted(true);
-      setFormData(initialForm);
+      setSubmitError('');
+      setIsSubmitting(true);
+
+      try {
+        const response = await fetch('https://formspree.io/f/mdayypvo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Form submission failed');
+        }
+
+        setSubmitted(true);
+        setFormData(initialForm);
+      } catch (error) {
+        setSubmitError('We could not send your message. Please try again or call us directly.');
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      setSubmitError('');
+      setSubmitted(false);
     }
   };
 
   return (
     <div className="contact-form-wrapper">
-      <form className="contact-form" onSubmit={handleSubmit} noValidate>
+      <form
+        className="contact-form"
+        onSubmit={handleSubmit}
+        action={"https://formspree.io/f/mdayypvo"}
+        method="POST"
+        noValidate
+      >
         <div className="form-grid">
           <label>
             Name
@@ -70,8 +103,11 @@ export default function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               placeholder="Your full name"
+              required
             />
-            {errors.name ? <span className="field-error">{errors.name}</span> : null}
+            {errors.name ? (
+              <span className="field-error">{errors.name}</span>
+            ) : null}
           </label>
 
           <label>
@@ -82,8 +118,11 @@ export default function ContactForm() {
               value={formData.phone}
               onChange={handleChange}
               placeholder="(555) 123-4567"
+              required
             />
-            {errors.phone ? <span className="field-error">{errors.phone}</span> : null}
+            {errors.phone ? (
+              <span className="field-error">{errors.phone}</span>
+            ) : null}
           </label>
 
           <label>
@@ -94,8 +133,11 @@ export default function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               placeholder="name@example.com"
+              required
             />
-            {errors.email ? <span className="field-error">{errors.email}</span> : null}
+            {errors.email ? (
+              <span className="field-error">{errors.email}</span>
+            ) : null}
           </label>
 
           <label>
@@ -106,8 +148,11 @@ export default function ContactForm() {
               value={formData.address}
               onChange={handleChange}
               placeholder="Service address"
+              required
             />
-            {errors.address ? <span className="field-error">{errors.address}</span> : null}
+            {errors.address ? (
+              <span className="field-error">{errors.address}</span>
+            ) : null}
           </label>
 
           <label>
@@ -118,9 +163,12 @@ export default function ContactForm() {
               value={formData.footage}
               onChange={handleChange}
               placeholder="200"
-              min='1'
+              min="1"
+              required
             />
-            {errors.footage ? <span className="field-error">{errors.footage}</span> : null}
+            {errors.footage ? (
+              <span className="field-error">{errors.footage}</span>
+            ) : null}
           </label>
         </div>
 
@@ -132,16 +180,23 @@ export default function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             placeholder="Tell us about your home and what service you need."
+            required
           />
-          {errors.message ? <span className="field-error">{errors.message}</span> : null}
+          {errors.message ? (
+            <span className="field-error">{errors.message}</span>
+          ) : null}
         </label>
 
-        <button type="submit" className="btn btn-large">
-          Submit
+        <button type="submit" className="btn btn-large" disabled={isSubmitting}>
+          {isSubmitting ? 'Sending...' : 'Submit'}
         </button>
 
+        {submitError ? <p className="field-error">{submitError}</p> : null}
+
         {submitted ? (
-          <p className="success-message">Thank you. We will contact you shortly with your quote.</p>
+          <p className="success-message">
+            Thank you. We will contact you shortly with your quote.
+          </p>
         ) : null}
       </form>
     </div>
