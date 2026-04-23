@@ -5,6 +5,7 @@ const initialForm = {
   phone: '',
   email: '',
   address: '',
+  footage: '',
   message: '',
 };
 
@@ -31,6 +32,12 @@ export default function ContactForm() {
 
     if (!formData.address.trim()) nextErrors.address = 'Address is required.';
     if (!formData.message.trim()) nextErrors.message = 'Please tell us what you need.';
+
+    if (!formData.footage.trim()) {
+      nextErrors.footage = 'Please tell us how many linear feet your gutter system is.';
+    } else if (Number.isNaN(Number(formData.footage))) {
+      nextErrors.footage = 'Linear footage must be a number.';
+    }
 
     return nextErrors;
   };
@@ -101,6 +108,19 @@ export default function ContactForm() {
               placeholder="Service address"
             />
             {errors.address ? <span className="field-error">{errors.address}</span> : null}
+          </label>
+
+          <label>
+            Linear Footage
+            <input
+              type="number"
+              name="footage"
+              value={formData.footage}
+              onChange={handleChange}
+              placeholder="200"
+              min='1'
+            />
+            {errors.footage ? <span className="field-error">{errors.footage}</span> : null}
           </label>
         </div>
 

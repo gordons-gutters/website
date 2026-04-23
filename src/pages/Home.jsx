@@ -104,7 +104,7 @@ export default function Home() {
         <div className="container areas">
           <h2>Service Areas</h2>
           <p>
-            Serving homeowners across Maple Ridge, Brookside, Northfield, and nearby
+            Serving homeowners across Pocatello, Chubbuck, Inkom, and nearby
             communities.
           </p>
         </div>
