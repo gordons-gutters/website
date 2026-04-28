@@ -4,6 +4,15 @@ const initialForm = {
 };
 
 export default function QuoteGenerator() {
+
+  let linearFeet = 0;
+  // service rate in $USD
+  const cleaningRate = 4;
+  const installRate = 6.5;
+
+  function calculateQuote(){
+    
+  }
     
     return (
       <div className="contact-form-wrapper">
