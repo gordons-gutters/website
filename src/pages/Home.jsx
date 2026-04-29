@@ -43,15 +43,15 @@ const previewImages = [
 const reviews = [
   {
     name: 'K. Monroe',
-    quote: 'They showed up on time, cleaned everything, and found a blocked downspout before it became a bigger issue.',
+    quote: 'Will was super quick, cleaned everything, and found a blocked downspout before it became a bigger issue.',
   },
   {
     name: 'J. Patel',
-    quote: 'Fast quote, professional crew, and the new guards look great. Worth every dollar.',
+    quote: 'Fast quote, Will was super professional, and the new guards look great. Worth every dollar.',
   },
   {
     name: 'L. Rivera',
-    quote: 'Clear communication and fair pricing. I now schedule them every spring and fall.',
+    quote: 'Clear communication and fair pricing. I will be calling Will back out in the fall.',
   },
 ];
 
