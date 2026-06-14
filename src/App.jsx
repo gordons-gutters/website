@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
-// import QuoteGenerator from './pages/QuoteGenerator';
+import QuoteGenerator from './components/QuoteGenerator';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -26,8 +26,8 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/quote" element={<QuoteGenerator />} />
           <Route path="/services" element={<Services />} />
-          {/* <Route path="/quote" element={<Quote />} /> */}
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

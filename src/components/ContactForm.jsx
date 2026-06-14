@@ -154,22 +154,6 @@ export default function ContactForm() {
               <span className="field-error">{errors.address}</span>
             ) : null}
           </label>
-
-          <label>
-            Linear Footage
-            <input
-              type="number"
-              name="footage"
-              value={formData.footage}
-              onChange={handleChange}
-              placeholder="200"
-              min="1"
-              required
-            />
-            {errors.footage ? (
-              <span className="field-error">{errors.footage}</span>
-            ) : null}
-          </label>
         </div>
 
         <label>

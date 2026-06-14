@@ -43,7 +43,7 @@ export default function Navbar() {
           <NavLink to="/contact" onClick={closeMenu}>
             Contact
           </NavLink>
-          <Link to="/contact" className="btn btn-small" onClick={closeMenu}>
+          <Link to="/quote" className="btn btn-small" onClick={closeMenu}>
             Get Quote
           </Link>
         </div>
