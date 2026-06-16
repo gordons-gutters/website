@@ -3,59 +3,11 @@ import Hero from '../components/Hero';
 import ServiceCard from '../components/ServiceCard';
 import GalleryGrid from '../components/GalleryGrid';
 import ContactForm from '../components/ContactForm';
-
-const services = [
-  {
-    title: 'Gutter Cleaning',
-    description: 'Seasonal removal of leaves and buildup to keep water flowing safely.',
-    icon: '01',
-  },
-  {
-    title: 'Gutter Guard Installation',
-    description: 'Reduce clogs and maintenance with durable, low-visibility guards.',
-    icon: '02',
-  },
-  {
-    title: 'Downspout Cleaning',
-    description: 'Full downspout clearing to prevent backup and overflow near your foundation.',
-    icon: '03',
-  },
-];
-
-const previewImages = [
-  {
-    src: '/website/images/gutters/clean.jpg',
-    alt: 'Clean residential gutters after service',
-    caption: 'After: debris removed and channels cleared',
-  },
-  {
-    src: '/website/images/gutters/straight.jpg',
-    alt: 'Crew servicing roof gutters',
-    caption: 'Professional service with safety-first process',
-  },
-  {
-    src: '/website/images/gutters/before-and-after.jpg',
-    alt: 'Home exterior with maintained gutter lines',
-    caption: 'Before and after transformations',
-  },
-];
-
-const reviews = [
-  {
-    name: 'K. Monroe',
-    quote: 'Will was super quick, cleaned everything, and found a blocked downspout before it became a bigger issue.',
-  },
-  {
-    name: 'J. Patel',
-    quote: 'Fast quote, Will was super professional, and the new guards look great. Worth every dollar.',
-  },
-  {
-    name: 'L. Rivera',
-    quote: 'Clear communication and fair pricing. I will be calling Will back out in the fall.',
-  },
-];
+import useHomeController from '../../controllers/useHomeController';
 
 export default function Home() {
+  const { services, previewImages, reviews } = useHomeController();
+
   return (
     <>
       <Hero />

@@ -1,12 +1,12 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Services from './pages/Services';
-import Gallery from './pages/Gallery';
-import Contact from './pages/Contact';
-import QuoteGenerator from './components/QuoteGenerator';
+import Navbar from './views/components/Navbar';
+import Footer from './views/components/Footer';
+import Home from './views/pages/Home';
+import Services from './views/pages/Services';
+import Gallery from './views/pages/Gallery';
+import Contact from './views/pages/Contact';
+import QuoteGenerator from './views/components/QuoteGenerator';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
