@@ -1,96 +1,23 @@
-import { useState } from 'react';
-
-const initialForm = {
-  name: '',
-  phone: '',
-  email: '',
-  address: '',
-  footage: '',
-  message: '',
-};
+import useContactFormController from '../../controllers/useContactFormController';
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState(initialForm);
-  const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-  const [submitError, setSubmitError] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const validate = () => {
-    const nextErrors = {};
-
-    if (!formData.name.trim()) nextErrors.name = 'Name is required.';
-    if (!formData.phone.trim()) {
-      nextErrors.phone = 'Phone is required.';
-    } else if (!/^\+?[\d\s()-]{10,}$/.test(formData.phone)) {
-      nextErrors.phone = 'Enter a valid phone number.';
-    }
-
-    if (!formData.email.trim()) {
-      nextErrors.email = 'Email is required.';
-    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      nextErrors.email = 'Enter a valid email address.';
-    }
-
-    if (!formData.address.trim()) nextErrors.address = 'Address is required.';
-    if (!formData.message.trim()) nextErrors.message = 'Please tell us what you need.';
-
-    if (!formData.footage.trim()) {
-      nextErrors.footage = 'Please tell us how many linear feet your gutter system is.';
-    } else if (Number.isNaN(Number(formData.footage))) {
-      nextErrors.footage = 'Linear footage must be a number.';
-    }
-
-    return nextErrors;
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const nextErrors = validate();
-    setErrors(nextErrors);
-
-    if (Object.keys(nextErrors).length === 0) {
-      setSubmitError('');
-      setIsSubmitting(true);
-
-      try {
-        const response = await fetch('https://formspree.io/f/mdayypvo', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-
-        if (!response.ok) {
-          throw new Error('Form submission failed');
-        }
-
-        setSubmitted(true);
-        setFormData(initialForm);
-      } catch (error) {
-        setSubmitError('We could not send your message. Please try again or call us directly.');
-      } finally {
-        setIsSubmitting(false);
-      }
-    } else {
-      setSubmitError('');
-      setSubmitted(false);
-    }
-  };
+  const {
+    action,
+    formData,
+    errors,
+    submitted,
+    submitError,
+    isSubmitting,
+    handleChange,
+    handleSubmit,
+  } = useContactFormController();
 
   return (
     <div className="contact-form-wrapper">
       <form
         className="contact-form"
         onSubmit={handleSubmit}
-        action={"https://formspree.io/f/mdayypvo"}
+        action={action}
         method="POST"
         noValidate
       >

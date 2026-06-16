@@ -1,42 +1,7 @@
-import { useMemo, useState } from 'react';
-
-const initialForm = {
-  linearFeet: '120',
-  homeStories: '1',
-  serviceType: 'cleaning',
-};
-
-const rates = {
-  cleaning: 4,
-  install: 6.5,
-};
+import useQuoteController from '../../controllers/useQuoteController';
 
 export default function QuoteGenerator() {
-  const [formData, setFormData] = useState(initialForm);
-  const [quote, setQuote] = useState(null);
-
-  const estimatedQuote = useMemo(() => {
-    const feet = Number(formData.linearFeet);
-    const stories = Number(formData.homeStories);
-    const rate = rates[formData.serviceType] ?? rates.cleaning;
-
-    if (Number.isNaN(feet) || Number.isNaN(stories) || feet <= 0 || stories <= 0) {
-      return null;
-    }
-
-    const storyMultiplier = 1 + Math.max(0, stories - 1) * 0.12;
-    return Math.round(feet * rate * storyMultiplier + 35);
-  }, [formData]);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setQuote(estimatedQuote);
-  };
+  const { formData, quote, handleChange, handleSubmit } = useQuoteController();
 
   return (
     <section className="section container page-top-offset">
@@ -96,4 +61,3 @@ export default function QuoteGenerator() {
     </section>
   );
 }
-
